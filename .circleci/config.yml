@@ -1,5 +1,7 @@
-version: 2
-jobs:
+version: 2.1
+orbs:
+  aws-ecr: circleci/aws-ecr@0.0.2jobs:
+  
   test:
     docker:
       - image: openjdk:8
