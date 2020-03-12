@@ -1,24 +1,25 @@
 version: 2.1
 orbs:
   aws-ecr: circleci/aws-ecr@0.0.2j
-deploy:
-    docker:
-      - image: docker:18.06.1-ce-git
-    steps:
-      - checkout
-      - setup_remote_docker
-      - run:
-          name: Install dependencies
-          command: |
-            apk add py-pip
-            pip install awscli
-      - run: 
-          name: Build image and push
-              - aws-ecr/build_and_push_image:
-                  account-url: "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
-                  repo: "httpd"
-                  region: ${AWS_DEFAULT_REGION}
-                  tag: ${CIRCLE_BUILD_NUM}
+jobs:
+  deploy:
+      docker:
+        - image: docker:18.06.1-ce-git
+     steps:
+        - checkout
+        - setup_remote_docker
+        - run:
+            name: Install dependencies
+            command: |
+              apk add py-pip
+              pip install awscli
+        - run: 
+            name: Build image and push
+                - aws-ecr/build_and_push_image:
+                    account-url: "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
+                    repo: "httpd"
+                    region: ${AWS_DEFAULT_REGION}
+                    tag: ${CIRCLE_BUILD_NUM}
 
 workflows:
   version: 2
