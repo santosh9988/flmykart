@@ -12,13 +12,13 @@ deploy:
           command: |
             apk add py-pip
             pip install awscli
-      ##- run: 
-          ##name: Build image and push
-          - aws-ecr/build_and_push_image:
-                account-url: "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
-                repo: "httpd"
-                region: ${AWS_DEFAULT_REGION}
-                tag: ${CIRCLE_BUILD_NUM}
+      - run: 
+          name: Build image and push
+              - aws-ecr/build_and_push_image:
+                  account-url: "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
+                  repo: "httpd"
+                  region: ${AWS_DEFAULT_REGION}
+                  tag: ${CIRCLE_BUILD_NUM}
 
 workflows:
   version: 2
