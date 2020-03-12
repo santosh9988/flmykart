@@ -5,7 +5,7 @@ jobs:
   deploy:
       docker:
         - image: docker:18.06.1-ce-git
-     steps:
+      steps:
         - checkout
         - setup_remote_docker
         - run:
@@ -25,10 +25,7 @@ workflows:
   version: 2
   build_and_deploy:
     jobs:
-      - test
       - deploy:
-          requires:
-            - test
           filters:
             branches:
               only: master
