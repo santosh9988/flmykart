@@ -5,7 +5,7 @@ jobs:
       - image: openjdk:8
     steps:
       - checkout
-      - run: ./gradlew clean test --stacktrace --info
+      
   deploy:
     docker:
       - image: docker:18.06.1-ce-git
