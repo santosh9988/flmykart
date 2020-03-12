@@ -1,14 +1,7 @@
 version: 2.1
 orbs:
   aws-ecr: circleci/aws-ecr@0.0.2j
-jobs:  
-  test:
-    docker:
-      - image: openjdk:8
-    steps:
-      - checkout
-      
-  deploy:
+deploy:
     docker:
       - image: docker:18.06.1-ce-git
     steps:
@@ -19,8 +12,8 @@ jobs:
           command: |
             apk add py-pip
             pip install awscli
-      - run: 
-          name: Build image and push
+      ##- run: 
+          ##name: Build image and push
           - aws-ecr/build_and_push_image:
                 account-url: "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
                 repo: "httpd"
