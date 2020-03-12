@@ -10,10 +10,7 @@ echo "Building $BUILD_NUMBER"
 
 $(aws ecr get-login --no-include-email --region $REGION)
 # build a docker image with a unique build number
-docker build -t $ECR_URL:$BUILD_NUMBER \
-
-  --build-arg VERSION="$BUILD_NUMBER" \
-  .
+docker build -t $ECR_URL:$BUILD_NUMBER --build-arg VERSION="$BUILD_NUMBER" .
 
 # push to ecr
 docker push $ECR_URL:$BUILD_NUMBER
